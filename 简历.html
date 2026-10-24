@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>杨英葆 · 硬件工程 / FPGA · 个人主页</title>
+<meta name="description" content="杨英葆，成都大学新一代电子信息硕士在读，主攻 FPGA 与嵌入式方向，具备 STM32 与硬件设计项目经验，寻找硬件实习机会。" />
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+
+  :root{
+    --bg:#0a0e14;
+    --surface:#111721;
+    --surface-2:#161f2c;
+    --border:#1f2a38;
+    --text:#e6edf3;
+    --muted:#8b9bb0;
+    --accent:#22d3ee;
+    --accent-2:#5b9dff;
+    --shadow:0 12px 32px rgba(0,0,0,.45);
+    --radius:16px;
+    --sidebar-w:248px;
+  }
+  [data-theme="light"]{
+    --bg:#f4f7fb;
+    --surface:#ffffff;
+    --surface-2:#eef3fa;
+    --border:#dde5f0;
+    --text:#0d1726;
+    --muted:#5b6b80;
+    --accent:#0891b2;
+    --accent-2:#2563eb;
+    --shadow:0 12px 32px rgba(20,40,70,.08);
+  }
+
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+  a{color:inherit}
+  ::selection{background:var(--accent);color:#04121a}
+
+  /* ---------- 侧边导航 ---------- */
+  .sidebar{
+    position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);
+    display:flex;flex-direction:column;gap:6px;
+    padding:28px 18px;
+    background:var(--surface);
+    border-right:1px solid var(--border);
+    z-index:50;
+  }
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .brand-mark{
+    width:42px;height:42px;border-radius:12px;flex:none;
+    display:grid;place-items:center;
+    font-weight:800;font-size:13px;letter-spacing:.5px;
+    color:#04121a;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 6px 18px rgba(34,211,238,.25);
+  }
+  [data-theme="light"] .brand-mark{color:#fff}
+  .brand-text{display:flex;flex-direction:column;font-weight:700;font-size:15px;line-height:1.35}
+  .brand-text small{font-weight:400;font-size:11px;color:var(--muted);letter-spacing:.6px}
+
+  .nav{display:flex;flex-direction:column;gap:4px}
+  .nav-link{
+    display:block;padding:9px 12px;border-radius:10px;
+    color:var(--muted);text-decoration:none;font-size:14px;
+    border:1px solid transparent;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .nav-link:hover{color:var(--text);background:var(--surface-2)}
+  .nav-link.active{color:var(--accent);background:var(--surface-2);border-color:var(--border);font-weight:600}
+
+  .side-foot{margin-top:auto}
+  .theme-btn{
+    width:100%;padding:9px 12px;border-radius:10px;
+    border:1px solid var(--border);background:var(--surface-2);
+    color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;
+    transition:.2s;
+  }
+  .theme-btn:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- 主体 ---------- */
+  main{
+    margin-left:var(--sidebar-w);
+    padding:0 clamp(20px,5vw,72px) 80px;
+    max-width:1180px;
+  }
+  section{padding:72px 0;border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:0}
+
+  .sec-head{margin-bottom:32px}
+  .sec-kicker{
+    font-size:11.5px;letter-spacing:2.4px;text-transform:uppercase;
+    color:var(--accent);font-weight:700;
+  }
+  .sec-title{margin:6px 0 0;font-size:clamp(22px,3vw,30px);letter-spacing:-.6px;line-height:1.3}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center;
+    padding-top:88px;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);
+    font-size:12.5px;color:var(--muted);
+  }
+  .dot{
+    width:7px;height:7px;border-radius:50%;background:#22c55e;flex:none;
+    box-shadow:0 0 0 0 rgba(34,197,94,.6);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    70%{box-shadow:0 0 0 8px rgba(34,197,94,0)}
+    100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+  }
+  h1{
+    margin:16px 0 10px;
+    font-size:clamp(34px,5vw,54px);
+    letter-spacing:-1.8px;line-height:1.08;
+  }
+  .grad{
+    background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .typed{
+    font-size:clamp(15px,2vw,19px);
+    font-weight:600;color:var(--accent);
+    min-height:1.7em;font-variant-numeric:tabular-nums;
+  }
+  .cursor{
+    display:inline-block;width:2px;height:1em;background:var(--accent);
+    vertical-align:-.14em;margin-left:2px;
+    animation:blink 1s steps(2,start) infinite;
+  }
+  @keyframes blink{50%{opacity:0}}
+  .hero-desc{color:var(--muted);font-size:15px;margin:16px 0 0;max-width:46em}
+
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:11px;
+    border:1px solid var(--border);background:var(--surface);
+    color:var(--text);text-decoration:none;font-size:14px;font-family:inherit;
+    cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;
+  }
+  .btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .btn.primary{
+    border:0;font-weight:700;color:#04121a;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow:0 8px 24px rgba(34,211,238,.22);
+  }
+  [data-theme="light"] .btn.primary{color:#fff}
+
+  .wave-card{
+    border:1px solid var(--border);background:var(--surface);
+    border-radius:var(--radius);padding:18px 18px 14px;
+    box-shadow:var(--shadow);
+  }
+  .wave-label{
+    font-size:10.5px;letter-spacing:1.8px;text-transform:uppercase;
+    color:var(--muted);margin-bottom:8px;
+  }
+  #wave{width:100%;height:170px;display:block}
+  .wave-meta{
+    display:flex;justify-content:space-between;
+    font-size:11.5px;color:var(--muted);
+    margin-top:8px;font-variant-numeric:tabular-nums;
+  }
+
+  /* ---------- 关于 ---------- */
+  .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px}
+  .card{
+    border:1px solid var(--border);background:var(--surface);
+    border-radius:var(--radius);padding:26px;box-shadow:var(--shadow);
+  }
+  .card h3{margin:0 0 14px;font-size:16px;letter-spacing:-.2px}
+  .highlights{list-style:none;margin:0;padding:0;display:grid;gap:16px}
+  .highlights li{display:flex;gap:13px;font-size:14px;color:var(--muted)}
+  .highlights b{color:var(--text);font-weight:600}
+  .hl-ic{
+    width:32px;height:32px;flex:none;border-radius:9px;
+    display:grid;place-items:center;
+    background:var(--surface-2);color:var(--accent);
+    font-size:14px;font-weight:700;
+  }
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .stat{
+    border:1px solid var(--border);background:var(--surface);
+    border-radius:14px;padding:18px 16px;text-align:center;
+  }
+  .stat b{
+    display:block;font-size:26px;letter-spacing:-1.2px;line-height:1.2;
+    background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{font-size:12px;color:var(--muted)}
+
+  /* ---------- 教育 ---------- */
+  .timeline{position:relative;padding-left:30px;margin-top:8px}
+  .timeline::before{
+    content:"";position:absolute;left:7px;top:8px;bottom:12px;width:2px;
+    background:linear-gradient(var(--accent),transparent);
+  }
+  .tl-item{position:relative;padding-bottom:30px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:-28px;top:7px;
+    width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+    box-shadow:0 0 0 4px var(--bg);
+  }
+  .tl-item.future::before{border-style:dashed}
+  .tl-time{
+    font-size:12px;letter-spacing:1px;color:var(--accent);
+    font-weight:600;font-variant-numeric:tabular-nums;
+  }
+  .tl-title{margin:4px 0 2px;font-size:17px;font-weight:700;letter-spacing:-.3px}
+  .tl-sub{font-size:13.5px;color:var(--muted)}
+  .course-wrap{margin-top:28px}
+  .course-wrap h4{font-size:13px;color:var(--muted);margin:0 0 12px;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:12.5px;padding:5px 12px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);color:var(--muted);
+    transition:.2s;
+  }
+  .chip:hover{color:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+
+  /* ---------- 技能 ---------- */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .tab{
+    padding:8px 16px;border-radius:999px;
+    border:1px solid var(--border);background:transparent;
+    color:var(--muted);cursor:pointer;font-size:13.5px;font-family:inherit;
+    transition:.2s;
+  }
+  .tab:hover{color:var(--text)}
+  .tab.active{background:var(--surface-2);color:var(--accent);border-color:var(--accent);font-weight:600}
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:14px}
+  .skill{
+    border:1px solid var(--border);background:var(--surface);
+    border-radius:12px;padding:16px 18px;transition:transform .22s,border-color .22s;
+  }
+  .skill:hover{transform:translateY(-3px);border-color:var(--accent)}
+  .skill h4{margin:0 0 5px;font-size:14.5px;letter-spacing:-.2px}
+  .skill p{margin:0;font-size:12.5px;color:var(--muted);line-height:1.6}
+
+  /* ---------- 项目 ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+  .filter{
+    padding:7px 15px;border-radius:999px;
+    border:1px solid var(--border);background:transparent;
+    color:var(--muted);cursor:pointer;font-size:13px;font-family:inherit;
+    transition:.2s;
+  }
+  .filter:hover{color:var(--text)}
+  .filter.active{background:var(--surface-2);color:var(--accent);border-color:var(--accent);font-weight:600}
+
+  .proj-list{display:grid;gap:14px}
+  .proj{
+    border:1px solid var(--border);background:var(--surface);
+    border-radius:var(--radius);overflow:hidden;
+    transition:border-color .22s,box-shadow .22s;
+  }
+  .proj:hover{border-color:var(--accent);box-shadow:var(--shadow)}
+  .proj summary{
+    list-style:none;cursor:pointer;
+    padding:20px 22px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .proj summary::-webkit-details-marker{display:none}
+  .proj summary::marker{content:""}
+  .proj-main{flex:1;min-width:0}
+  .proj-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+  .proj-time{
+    font-size:12px;color:var(--accent);font-weight:600;
+    font-variant-numeric:tabular-nums;letter-spacing:.4px;
+  }
+  .tag{
+    font-size:11px;padding:2px 9px;border-radius:999px;
+    background:var(--surface-2);color:var(--muted);
+    border:1px solid var(--border);
+  }
+  .proj-title{margin:0;font-size:16.5px;letter-spacing:-.3px;line-height:1.4}
+  .proj-sub{margin:5px 0 0;font-size:13px;color:var(--muted)}
+  .arrow{color:var(--muted);flex:none;transition:transform .3s;font-size:13px;margin-top:4px}
+  .proj[open] .arrow{transform:rotate(180deg);color:var(--accent)}
+  .proj-body{
+    padding:4px 22px 24px 22px;
+    border-top:1px dashed var(--border);
+    margin-top:2px;padding-top:18px;
+    animation:fadeIn .3s ease;
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .proj-body dl{margin:0;display:grid;gap:12px}
+  .proj-body dt{
+    font-size:12.5px;font-weight:700;color:var(--accent);
+    letter-spacing:.3px;margin-bottom:2px;
+  }
+  .proj-body dd{margin:0;font-size:13.5px;color:var(--muted);line-height:1.75}
+
+  /* ---------- 联系 ---------- */
+  .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .contact-item{
+    display:flex;align-items:center;gap:14px;
+    padding:18px 20px;border:1px solid var(--border);background:var(--surface);
+    border-radius:14px;cursor:pointer;font-family:inherit;font-size:inherit;
+    color:inherit;text-align:left;text-decoration:none;
+    transition:transform .22s,border-color .22s;
+  }
+  .contact-item:hover{transform:translateY(-2px);border-color:var(--accent)}
+  .ic{
+    width:38px;height:38px;flex:none;border-radius:10px;
+    display:grid;place-items:center;
+    background:var(--surface-2);color:var(--accent);
+    font-size:15px;font-weight:700;
+  }
+  .ci-label{font-size:11.5px;color:var(--muted);letter-spacing:.4px}
+  .ci-value{font-size:14px;font-weight:600;word-break:break-all}
+
+  footer{
+    padding:36px 0 0;font-size:12.5px;color:var(--muted);
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+
+  /* ---------- 动画 ---------- */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- Toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:32px;transform:translate(-50%,16px);
+    background:var(--surface-2);border:1px solid var(--accent);
+    color:var(--text);padding:10px 22px;border-radius:999px;
+    font-size:13px;opacity:0;pointer-events:none;
+    transition:.28s ease;z-index:200;box-shadow:var(--shadow);
+  }
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:960px){
+    .sidebar{
+      position:sticky;top:0;left:0;right:0;bottom:auto;width:auto;
+      flex-direction:row;align-items:center;gap:12px;
+      padding:10px 16px;border-right:0;border-bottom:1px solid var(--border);
+    }
+    .brand{margin-bottom:0;gap:9px}
+    .brand-mark{width:34px;height:34px;border-radius:10px;font-size:11px}
+    .brand-text{font-size:13.5px}
+    .brand-text small{display:none}
+    .nav{flex-direction:row;flex:1;overflow-x:auto;gap:2px;scrollbar-width:none}
+    .nav::-webkit-scrollbar{display:none}
+    .nav-link{white-space:nowrap;font-size:13px;padding:7px 11px}
+    .side-foot{margin-top:0;margin-left:auto}
+    .theme-btn{width:auto;padding:7px 11px;white-space:nowrap}
+    main{margin-left:0;padding:0 18px 56px}
+    .hero{grid-template-columns:1fr;padding-top:44px;gap:30px}
+    .about-grid{grid-template-columns:1fr}
+    section{padding:52px 0}
+    .stats{grid-template-columns:repeat(3,1fr);gap:8px}
+    .stat{padding:14px 8px}
+    .stat b{font-size:21px}
+  }
+  @media (max-width:520px){
+    .proj summary{padding:16px;gap:10px}
+    .proj-body{padding:14px 16px 20px}
+    .card{padding:20px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+
+  /* ---------- 打印 ---------- */
+  @media print{
+    .sidebar,#toast,.filters,.tabs,.wave-card,.actions,.theme-btn{display:none!important}
+    main{margin:0;padding:0;max-width:100%}
+    body{background:#fff;color:#000;font-size:12px}
+    section{padding:18px 0;break-inside:avoid;border-color:#ccc}
+    .card,.proj,.skill,.stat,.contact-item{border:1px solid #ddd;box-shadow:none;background:#fff;break-inside:avoid}
+    .reveal{opacity:1!important;transform:none!important}
+    .arrow{display:none}
+    .proj-body{border-top:1px solid #eee}
+    a{text-decoration:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 侧边导航 ============ -->
+<aside class="sidebar">
+  <div class="brand">
+    <span class="brand-mark">YYB</span>
+    <span class="brand-text">
+      杨英葆
+      <small>硬件 / FPGA / 嵌入式</small>
+    </span>
+  </div>
+
+  <nav class="nav">
+    <a href="#home" class="nav-link active">首页</a>
+    <a href="#about" class="nav-link">关于我</a>
+    <a href="#edu" class="nav-link">教育背景</a>
+    <a href="#skills" class="nav-link">技能专长</a>
+    <a href="#projects" class="nav-link">项目经历</a>
+    <a href="#contact" class="nav-link">联系方式</a>
+  </nav>
+
+  <div class="side-foot">
+    <button class="theme-btn" id="themeBtn" type="button">☀ 浅色模式</button>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ============ Hero ============ -->
+  <section id="home" class="hero">
+    <div>
+      <span class="badge">
+        <span class="dot"></span>
+        成都大学 · 新一代电子信息（085401）硕士在读 · 求职：硬件实习
+      </span>
+
+      <h1>你好，我是 <span class="grad">杨英葆</span></h1>
+
+      <div class="typed" id="typed" aria-live="polite"></div>
+
+      <p class="hero-desc">
+        通信工程本科 → 新一代电子信息硕士，主攻 <b>FPGA 与嵌入式</b> 方向。
+        具备 C 语言与 STM32 项目实战经验，正在系统性复刻开源硬件平台——
+        从原理图、PCB 布局到 Verilog 数字逻辑，逐层打通软硬件链路。
+      </p>
+
+      <div class="actions">
+        <a href="#projects" class="btn primary">查看项目经历 →</a>
+        <button class="btn" type="button" data-copy="1726781261@qq.com">📋 复制邮箱</button>
+        <button class="btn" type="button" id="printBtn">🖨 导出 / 打印简历</button>
+      </div>
+    </div>
+
+    <div class="wave-card">
+      <div class="wave-label">FMCW Chirp Signal · 示意</div>
+      <canvas id="wave" aria-hidden="true"></canvas>
+      <div class="wave-meta">
+        <span>TX chirp</span>
+        <span>Δf / FFT ranging</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 关于我 ============ -->
+  <section id="about" class="reveal">
+    <div class="sec-head">
+      <div class="sec-kicker">About</div>
+      <h2 class="sec-title">关于我</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="card">
+        <h3>自我评价</h3>
+        <ul class="highlights">
+          <li>
+            <span class="hl-ic">01</span>
+            <span><b>通信工程本硕，主攻嵌入式与 FPGA 方向。</b>从模拟电路、数字信号处理到硬件描述语言，具备完整的专业基础链条。</span>
+          </li>
+          <li>
+            <span class="hl-ic">02</span>
+            <span><b>具备 C 语言与 STM32 项目实战经验。</b>独立完成过传感器采集、串口通信到网络模块上云的全链路联调。</span>
+          </li>
+          <li>
+            <span class="hl-ic">03</span>
+            <span><b>主动复刻开源硬件项目。</b>研一阶段系统研读 FPGA + STM32 双核开发板原理图，练习 Verilog 模块设计与 Altium Designer 布线。</span>
+          </li>
+          <li>
+            <span class="hl-ic">04</span>
+            <span><b>学习能力强，擅长拆解与调试软硬件链路问题。</b>习惯把复杂系统拆成可验证的模块，逐个打通。</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>4</b><span>项目实践</span></div>
+        <div class="stat"><b>3</b><span>技能方向</span></div>
+        <div class="stat"><b>2021</b><span>起持续实践</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 教育背景 ============ -->
+  <section id="edu" class="reveal">
+    <div class="sec-head">
+      <div class="sec-kicker">Education</div>
+      <h2 class="sec-title">教育背景</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item future">
+        <div class="tl-time">2026.09 — 2029.07</div>
+        <div class="tl-title">成都大学 · 新一代电子信息（085401）</div>
+        <div class="tl-sub">硕士在读 · 研究方向：数字信号处理 / FPGA 与嵌入式系统</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-time">2021.09 — 2025.07</div>
+        <div class="tl-title">成都大学 · 通信工程</div>
+        <div class="tl-sub">本科 · 系统学习信号与系统、数字信号处理、电路与嵌入式开发</div>
+      </div>
+    </div>
+
+    <div class="course-wrap">
+      <h4>主修课程</h4>
+      <div class="chips">
+        <span class="chip">FPGA 数字系统设计</span>
+        <span class="chip">单片机原理</span>
+        <span class="chip">Python 程序设计</span>
+        <span class="chip">数字信号处理</span>
+        <span class="chip">数字图像处理</span>
+        <span class="chip">信号与系统</span>
+        <span class="chip">电路</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 技能专长 ============ -->
+  <section id="skills" class="reveal">
+    <div class="sec-head">
+      <div class="sec-kicker">Skills</div>
+      <h2 class="sec-title">技能专长</h2>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" type="button" data-tab="lang" role="tab">编程语言</button>
+      <button class="tab" type="button" data-tab="hw" role="tab">硬件设计</button>
+      <button class="tab" type="button" data-tab="emb" role="tab">嵌入式开发</button>
+    </div>
+
+    <div class="skill-panel" data-panel="lang">
+      <div class="skill-grid">
+        <div class="skill">
+          <h4>C · 熟练</h4>
+          <p>项目主力语言，STM32 裸机开发与驱动调试</p>
+        </div>
+        <div class="skill">
+          <h4>Verilog / VHDL</h4>
+          <p>硬件描述语言，Quartus 综合与 ModelSim 仿真</p>
+        </div>
+        <div class="skill">
+          <h4>Python</h4>
+          <p>主修课程与数据处理脚本</p>
+        </div>
+        <div class="skill">
+          <h4>C++</h4>
+          <p>课程基础，具备面向对象编程概念</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-panel" data-panel="hw" hidden>
+      <div class="skill-grid">
+        <div class="skill">
+          <h4>Altium Designer</h4>
+          <p>原理图设计与 PCB 布局布线</p>
+        </div>
+        <div class="skill">
+          <h4>立创 EDA</h4>
+          <p>开源硬件项目的原理图研读与复刻</p>
+        </div>
+        <div class="skill">
+          <h4>焊接与调试</h4>
+          <p>元器件焊接、整机调试与故障排查</p>
+        </div>
+        <div class="skill">
+          <h4>常用仪器</h4>
+          <p>万用表、示波器使用与信号测量</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-panel" data-panel="emb" hidden>
+      <div class="skill-grid">
+        <div class="skill">
+          <h4>STM32 单片机</h4>
+          <p>GPIO / 定时器 / ADC / USART / SPI / I2C 外设开发</p>
+        </div>
+        <div class="skill">
+          <h4>FPGA 开发</h4>
+          <p>Quartus 综合、ModelSim 仿真、基础数字逻辑模块设计</p>
+        </div>
+        <div class="skill">
+          <h4>网络模块上云</h4>
+          <p>串口 + 网络模块数据链路搭建，云服务器数据上传</p>
+        </div>
+        <div class="skill">
+          <h4>传感器集成</h4>
+          <p>温湿度采集、接口电路与软硬件联调</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 项目经历 ============ -->
+  <section id="projects" class="reveal">
+    <div class="sec-head">
+      <div class="sec-kicker">Projects</div>
+      <h2 class="sec-title">项目经历</h2>
+    </div>
+
+    <div class="filters">
+      <button class="filter active" type="button" data-filter="all">全部</button>
+      <button class="filter" type="button" data-filter="fpga">FPGA · 数字逻辑</button>
+      <button class="filter" type="button" data-filter="embedded">嵌入式</button>
+      <button class="filter" type="button" data-filter="pcb">PCB · 硬件</button>
+      <button class="filter" type="button" data-filter="research">科研</button>
+    </div>
+
+    <div class="proj-list">
+
+      <!-- 项目 1 -->
+      <details class="proj" data-tags="fpga pcb">
+        <summary>
+          <div class="proj-main">
+            <div class="proj-top">
+              <span class="proj-time">2026.10 — 进行中</span>
+              <span class="tag">FPGA</span>
+              <span class="tag">Verilog</span>
+              <span class="tag">硬件复刻</span>
+            </div>
+            <h3 class="proj-title">开源硬件项目复刻与实践</h3>
+            <p class="proj-sub">研一聚焦 FPGA 与嵌入式方向，系统性复刻立创开源广场代表性开源硬件</p>
+          </div>
+          <span class="arrow">▼</span>
+        </summary>
+        <div class="proj-body">
+          <dl>
+            <div>
+              <dt>项目定位</dt>
+              <dd>研一聚焦 FPGA 与嵌入式方向，系统性复刻立创开源广场代表性开源硬件，快速建立硬件设计能力。</dd>
+            </div>
+            <div>
+              <dt>平台研读</dt>
+              <dd>复刻「电赛神器：FPGA + STM32 开发板」，研读 Cyclone IV EP4CE10 与 STM32F103C8T6 双核架构原理图，理解 FPGA 与 MCU 的协同工作方式。</dd>
+            </div>
+            <div>
+              <dt>模块实践</dt>
+              <dd>练习 Verilog 基础模块（分频、数码管驱动、流水灯）设计，在 Quartus 中完成综合与仿真；学习 8bit 高速 AD/DA（AD9708 / AD9280）接口电路。</dd>
+            </div>
+            <div>
+              <dt>延伸学习</dt>
+              <dd>跟进 LogicPi 双通道 FPGA 示波器（GW2A-LV18 + GD32F303）与智能家居监测项目，研读原理图与 PCB 布局，练习 Altium Designer 布线。</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+
+      <!-- 项目 2 -->
+      <details class="proj" data-tags="embedded">
+        <summary>
+          <div class="proj-main">
+            <div class="proj-top">
+              <span class="proj-time">2024.12</span>
+              <span class="tag">STM32</span>
+              <span class="tag">物联网</span>
+            </div>
+            <h3 class="proj-title">通信系统实训：STM32 农业大棚环境监测系统</h3>
+            <p class="proj-sub">基于 STM32 从零搭建环境监测系统，实现温湿度采集与远程实时监控</p>
+          </div>
+          <span class="arrow">▼</span>
+        </summary>
+        <div class="proj-body">
+          <dl>
+            <div>
+              <dt>实训目标</dt>
+              <dd>基于 STM32 从零搭建农业大棚环境监测系统，实现温湿度采集与远程实时监控。</dd>
+            </div>
+            <div>
+              <dt>系统设计</dt>
+              <dd>完成系统整体方案与主程序编写，负责代码编写与调试；集成温湿度采集，通过串口与网络模块建立数据链路。</dd>
+            </div>
+            <div>
+              <dt>上云联调</dt>
+              <dd>打通「传感器采集 → 单片机处理 → 网络模块上传云服务器」全链路，支持远程实时查看环境数据。</dd>
+            </div>
+            <div>
+              <dt>项目收获</dt>
+              <dd>贯通传感器、串口与物联网链路，系统实践了嵌入式软硬件联调流程。</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+
+      <!-- 项目 3 -->
+      <details class="proj" data-tags="research">
+        <summary>
+          <div class="proj-main">
+            <div class="proj-top">
+              <span class="proj-time">2023.06</span>
+              <span class="tag">科研项目</span>
+              <span class="tag">信号处理</span>
+            </div>
+            <h3 class="proj-title">基于 FMCW 的无源探测</h3>
+            <p class="proj-sub">参与学院教师科研课题，学习 FMCW 雷达无源探测的信号处理原理与实现思路</p>
+          </div>
+          <span class="arrow">▼</span>
+        </summary>
+        <div class="proj-body">
+          <dl>
+            <div>
+              <dt>项目内容</dt>
+              <dd>参与学院教师科研课题，学习 FMCW 雷达无源探测的信号处理原理与实现思路。</dd>
+            </div>
+            <div>
+              <dt>工作职责</dt>
+              <dd>负责项目文档编写与整理；学习差频信号处理与 FFT 测距方法，跟踪信号处理链路实现。</dd>
+            </div>
+            <div>
+              <dt>项目收获</dt>
+              <dd>掌握 FMCW 无源探测原理与信号处理链路，为研究生阶段的数字信号处理方向打下基础。</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+
+      <!-- 项目 4 -->
+      <details class="proj" data-tags="pcb">
+        <summary>
+          <div class="proj-main">
+            <div class="proj-top">
+              <span class="proj-time">2021.10</span>
+              <span class="tag">PCB</span>
+              <span class="tag">Altium Designer</span>
+            </div>
+            <h3 class="proj-title">校园光立方大赛 &amp; 校园电子技术大赛</h3>
+            <p class="proj-sub">以 LED 阵列为核心设计创意显示电路，承担硬件电路设计与制作</p>
+          </div>
+          <span class="arrow">▼</span>
+        </summary>
+        <div class="proj-body">
+          <dl>
+            <div>
+              <dt>项目内容</dt>
+              <dd>以 LED 阵列为核心设计创意显示电路，完成光立方参赛作品，承担硬件电路设计与制作。</dd>
+            </div>
+            <div>
+              <dt>工作职责</dt>
+              <dd>使用 Altium Designer 完成原理图设计与 PCB 布局布线；完成元器件焊接与整机调试。</dd>
+            </div>
+            <div>
+              <dt>项目收获</dt>
+              <dd>系统实践「原理图 → PCB → 焊接 → 调试」硬件设计全流程，熟悉常用电子元器件选型。</dd>
+            </div>
+          </dl>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ============ 联系方式 ============ -->
+  <section id="contact" class="reveal">
+    <div class="sec-head">
+      <div class="sec-kicker">Contact</div>
+      <h2 class="sec-title">联系方式</h2>
+    </div>
+
+    <div class="contact-grid">
+      <button class="contact-item" type="button" data-copy="1726781261@qq.com">
+        <span class="ic">@</span>
+        <span>
+          <span class="ci-label">邮箱 · 点击复制</span>
+          <span class="ci-value">1726781261@qq.com</span>
+        </span>
+      </button>
+
+      <button class="contact-item" type="button" data-copy="17358684278">
+        <span class="ic">☎</span>
+        <span>
+          <span class="ci-label">电话 · 点击复制</span>
+          <span class="ci-value">173-5868-4278</span>
+        </span>
+      </button>
+
+      <div class="contact-item" style="cursor:default">
+        <span class="ic">⌂</span>
+        <span>
+          <span class="ci-label">院校</span>
+          <span class="ci-value">成都大学</span>
+        </span>
+      </div>
+    </div>
+
+    <footer>
+      <span>© <span id="year"></span> 杨英葆 · 个人主页</span>
+      <span>成都大学 · 新一代电子信息 · 求职意向：硬件实习</span>
+    </footer>
+  </section>
+
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ========== 主题切换 ========== */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+
+  try {
+    var saved = localStorage.getItem('yyb-theme');
+    if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+  } catch (e) {}
+
+  function syncThemeBtn() {
+    themeBtn.textContent = root.dataset.theme === 'dark' ? '☀ 浅色模式' : '☾ 深色模式';
+  }
+  syncThemeBtn();
+
+  themeBtn.addEventListener('click', function () {
+    root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('yyb-theme', root.dataset.theme); } catch (e) {}
+    syncThemeBtn();
+  });
+
+  /* ========== Toast ========== */
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove('show');
+    }, 1800);
+  }
+
+  /* ========== 导航高亮 ========== */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
+  var sections = links
+    .map(function (l) { return document.querySelector(l.getAttribute('href')); })
+    .filter(Boolean);
+
+  function onScroll() {
+    var y = window.scrollY + 130;
+    var current = sections[0];
+    sections.forEach(function (s) {
+      if (s.offsetTop <= y) current = s;
+    });
+    if (!current) return;
+    links.forEach(function (l) {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ========== 滚动显现 ========== */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  /* ========== 打字机 ========== */
+  var words = [
+    '硬件工程实习生',
+    'FPGA / Verilog 数字逻辑开发',
+    '嵌入式系统 · STM32',
+    'PCB 设计与硬件调试',
+    '数字信号处理 · FMCW 雷达'
+  ];
+  var typedEl = document.getElementById('typed');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typedEl) {
+    if (reduceMotion) {
+      typedEl.textContent = words[0];
+    } else {
+      var wi = 0, ci = 0, deleting = false;
+      var cursorEl = document.createElement('span');
+      cursorEl.className = 'cursor';
+
+      function render(text) {
+        typedEl.textContent = text;
+        typedEl.appendChild(cursorEl);
+      }
+
+      function tick() {
+        var w = words[wi];
+        if (!deleting) {
+          ci++;
+          render(w.slice(0, ci));
+          if (ci >= w.length) {
+            deleting = true;
+            setTimeout(tick, 1700);
+            return;
+          }
+          setTimeout(tick, 85);
+        } else {
+          ci--;
+          render(w.slice(0, ci));
+          if (ci <= 0) {
+            deleting = false;
+            wi = (wi + 1) % words.length;
+            setTimeout(tick, 320);
+            return;
+          }
+          setTimeout(tick, 38);
+        }
+      }
+      tick();
+    }
+  }
+
+  /* ========== 技能 Tab ========== */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.skill-panel'));
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.classList.toggle('active', t === tab); });
+      panels.forEach(function (p) { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+    });
+  });
+
+  /* ========== 项目筛选 ========== */
+  var filters = Array.prototype.slice.call(document.querySelectorAll('.filter'));
+  var projs = Array.prototype.slice.call(document.querySelectorAll('.proj'));
+
+  filters.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filters.forEach(function (b) { b.classList.toggle('active', b === btn); });
+      var f = btn.dataset.filter;
+      projs.forEach(function (p) {
+        var tags = (p.dataset.tags || '').split(/\s+/);
+        var show = f === 'all' || tags.indexOf(f) !== -1;
+        p.style.display = show ? '' : 'none';
+        if (!show) p.open = false;
+      });
+    });
+  });
+
+  /* ========== 复制 ========== */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  Array.prototype.slice.call(document.querySelectorAll('[data-copy]')).forEach(function (el) {
+    el.addEventListener('click', function () {
+      var text = el.dataset.copy;
+      copyText(text).then(function () {
+        toast('已复制：' + text);
+      }).catch(function () {
+        toast('复制失败，请手动选择：' + text);
+      });
+    });
+  });
+
+  /* ========== 打印 / 导出 PDF ========== */
+  var printBtn = document.getElementById('printBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', function () {
+      window.print();
+    });
+  }
+
+  window.addEventListener('beforeprint', function () {
+    projs.forEach(function (d) {
+      d.dataset.wasopen = d.open ? '1' : '0';
+      d.open = true;
+      d.style.display = '';
+    });
+  });
+  window.addEventListener('afterprint', function () {
+    projs.forEach(function (d) {
+      if (d.dataset.wasopen !== '1') d.open = false;
+    });
+  });
+
+  /* ========== 年份 ========== */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ========== FMCW 波形 ========== */
+  var cv = document.getElementById('wave');
+  if (cv && cv.getContext && !reduceMotion) {
+    var ctx = cv.getContext('2d');
+    var W = 0, H = 0, startTime = performance.now();
+
+    function readVar(name, fallback) {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(name);
+      return (v && v.trim()) || fallback;
+    }
+
+    function resizeCanvas() {
+      var dpr = window.devicePixelRatio || 1;
+      var rect = cv.getBoundingClientRect();
+      W = rect.width || 300;
+      H = rect.height || 170;
+      cv.width = Math.max(1, Math.round(W * dpr));
+      cv.height = Math.max(1, Math.round(H * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function drawFrame(now) {
+      var accent = readVar('--accent', '#22d3ee');
+      var border = readVar('--border', '#1f2a38');
+      var muted = readVar('--muted', '#8b9bb0');
+
+      ctx.clearRect(0, 0, W, H);
+
+      // 网格
+      ctx.globalAlpha = 0.5;
+      ctx.strokeStyle = border;
+      ctx.lineWidth = 1;
+      var i;
+      for (i = 1; i < 8; i++) {
+        var gx = (W / 8) * i;
+        ctx.beginPath();
+        ctx.moveTo(gx, 0);
+        ctx.lineTo(gx, H);
+        ctx.stroke();
+      }
+      for (i = 1; i < 5; i++) {
+        var gy = (H / 5) * i;
+        ctx.beginPath();
+        ctx.moveTo(0, gy);
+        ctx.lineTo(W, gy);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      var t = (now - startTime) / 1000;
+
+      function wave(color, width, ampRatio, phase, freq) {
+        ctx.beginPath();
+        for (var x = 0; x <= W; x += 2) {
+          var u = x / W;
+          var y = H / 2 +
+            Math.sin(u * u * 26 + phase + t * freq) * (H * ampRatio) * (1 - u * 0.4);
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+      }
+
+      wave(accent, 2, 0.27, 0, 2.2);
+      wave(muted, 1.4, 0.14, 2.2, 1.5);
+
+      // 基线
+      ctx.beginPath();
+      ctx.moveTo(0, H / 2);
+      ctx.lineTo(W, H / 2);
+      ctx.setLineDash([4, 6]);
+      ctx.strokeStyle = border;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      requestAnimationFrame(drawFrame);
+    }
+
+    resizeCanvas();
+    requestAnimationFrame(drawFrame);
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeCanvas, 150);
+    });
+  } else if (cv) {
+    // 减少动效模式下画静态波形
+    var c2 = cv.getContext('2d');
+    var r = cv.getBoundingClientRect();
+    cv.width = Math.max(1, Math.round(r.width * (window.devicePixelRatio || 1)));
+    cv.height = Math.max(1, Math.round(r.height * (window.devicePixelRatio || 1)));
+    c2.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
+    c2.strokeStyle = '#22d3ee';
+    c2.lineWidth = 2;
+    c2.beginPath();
+    for (var x2 = 0; x2 <= r.width; x2 += 2) {
+      var u2 = x2 / r.width;
+      var y2 = r.height / 2 + Math.sin(u2 * u2 * 26) * (r.height * 0.27) * (1 - u2 * 0.4);
+      if (x2 === 0) c2.moveTo(x2, y2);
+      else c2.lineTo(x2, y2);
+    }
+    c2.stroke();
+  }
+})();
+</script>
+</body>
+</html>
